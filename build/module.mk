@@ -221,14 +221,13 @@ $(BUILD_PATH)/%.o : $(COMMON_BUILD)/arm/%.S
 	$(VERBOSE)$(CC) $(ASFLAGS) -c -o $@ $<
 	$(call echo,)
 
-# rust compiler to build .o from .rs in $(BUILD_DIR)
+# Rust compiler to build .o from .rs in $(BUILD_DIR)
 $(BUILD_PATH)/%.o : $(SOURCE_PATH)/%.rs
 	$(call echo,'Building file: $<')
 	$(call echo,'Invoking: Rust Compiler')
 	$(VERBOSE)$(MKDIR) $(dir $@)
 	$(VERBOSE)$(RUSTC) $(RUSTFLAGS) --emit obj -o $@ $<
 	$(call echo,)
-
 
 # CPP compiler to build .o from .cpp in $(BUILD_DIR)
 # Note: Calls standard $(CC) - gcc will invoke g++ as appropriate
